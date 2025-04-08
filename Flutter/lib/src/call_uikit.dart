@@ -1,6 +1,9 @@
 import 'package:tencent_calls_uikit/src/call_define.dart';
 import 'package:tencent_calls_uikit/src/impl/call_manager.dart';
 import 'package:tencent_calls_uikit/src/ui/call_navigator_observer.dart';
+import 'package:tencent_calls_uikit/src/data/user.dart';
+import 'package:tencent_calls_uikit/src/impl/call_state.dart';
+import 'package:tencent_calls_uikit/src/impl/call_state_ex.dart';
 
 class TUICallKit {
   static final TUICallKit _instance = TUICallKit();
@@ -110,4 +113,8 @@ class TUICallKit {
   void enableIncomingBanner(bool enable) {
     CallManager.instance.enableIncomingBanner(enable);
   }
+
+  void initCallStateEx(CallStateEx ex) => CallState.instance.ex = ex;
+  User get selfUser => CallState.instance.selfUser;
+  User get caller => CallState.instance.caller;
 }
