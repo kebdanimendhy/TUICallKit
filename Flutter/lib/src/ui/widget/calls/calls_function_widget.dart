@@ -352,7 +352,7 @@ class CallsFunctionWidget {
   }
 
   static Widget _buildAudioAndVideoCalleeWaitingView(Function close) {
-    final ex = CallState.instance.ex;
+    final ex = CallState.instance.builders;
     final builder = ex.calleeWaitingViewBuilder;
     if (builder != null) {
       return builder(

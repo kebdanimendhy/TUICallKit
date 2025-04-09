@@ -116,6 +116,7 @@ class _CallsIndividualUserWidgetState extends State<CallsIndividualUserWidget> {
           CallState.instance.remoteUserList[0].avatar, Constants.defaultAvatar);
     }
 
+    final descBuidler = CallState.instance.builders.individualUserWaitingDescBuilder;
     final userInfoWidget = Positioned(
         top: MediaQuery.of(context).size.height / 4,
         width: MediaQuery.of(context).size.width,
@@ -148,6 +149,7 @@ class _CallsIndividualUserWidgetState extends State<CallsIndividualUserWidget> {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            if (descBuidler != null) descBuidler(),
           ],
         ));
 
