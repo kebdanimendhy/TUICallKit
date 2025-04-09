@@ -247,7 +247,7 @@ class CallsFunctionWidget {
   }
 
   static Widget _buildVideoCallerWaitingView(Function close) {
-    final builder = CallState.instance.ex.videoCallerWaitingViewBuilder;
+    final builder = CallState.instance.builders.videoCallerWaitingViewBuilder;
     if (builder != null) {
       return builder(
         handleSwitchCamera: _handleSwitchCamera,
@@ -269,7 +269,7 @@ class CallsFunctionWidget {
   }
 
   static Widget _buildVBgVideoCallerWaitingView(Function close) {
-    final builder = CallState.instance.ex.videoCallerWaitingViewBuilder;
+    final builder = CallState.instance.builders.videoCallerWaitingViewBuilder;
     if (builder != null) {
       return builder(
         handleSwitchCamera: _handleSwitchCamera,
@@ -309,6 +309,17 @@ class CallsFunctionWidget {
   }
 
   static Widget _buildVideoCallerAndCalleeAcceptedView(Function close) {
+    final builder = CallState.instance.builders.videoCallerAndCalleeAcceptedViewBuilder;
+    if (builder != null) {
+      return builder(
+        handleSwitchMic: _handleSwitchMic,
+        handleSwitchAudioDevice: _handleSwitchAudioDevice,
+        handleOpenCloseCamera: _handleOpenCloseCamera,
+        handleHangup: () => _handleHangUp(close),
+        handleOpenBlurBackground: _handleOpenBlurBackground,
+        handleSwitchCamera: _handleSwitchCamera,
+      );
+    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -407,6 +418,8 @@ class CallsFunctionWidget {
   }
 
   static Widget _buildSpeakerphoneButton() {
+    final builder = CallState.instance.builders.speakerphoneButtonBuidler;
+    if (builder != null) return builder(_handleSwitchAudioDevice);
     return ExtendButton(
       imgUrl: CallState.instance.audioDevice == TUIAudioPlaybackDevice.speakerphone
           ? "assets/images/handsfree_on.png"
@@ -423,7 +436,7 @@ class CallsFunctionWidget {
   }
 
   static Widget _buildCameraControlButton() {
-    final builder = CallState.instance.ex.videoCallerWaitingCameraControlButtonBuilder;
+    final builder = CallState.instance.builders.cameraControlButtonBuilder;
     if (builder != null) return builder(_handleOpenCloseCamera);
     return ExtendButton(
       imgUrl: CallState.instance.isCameraOpen
@@ -439,6 +452,8 @@ class CallsFunctionWidget {
   }
 
   static Widget _buildMicControlButton() {
+    final builder = CallState.instance.builders.micControlButtonBuilder;
+    if (builder != null) return builder(_handleSwitchMic);
     return ExtendButton(
       imgUrl: CallState.instance.isMicrophoneMute
           ? "assets/images/mute_on.png"
@@ -455,7 +470,7 @@ class CallsFunctionWidget {
   }
 
   static Widget _buildHangupButton(Function close) {
-    final builder = CallState.instance.ex.videoCallerWaitingHangupButtonBuilder;
+    final builder = CallState.instance.builders.hangupButtonBuilder;
     if (builder != null) return builder(() => _handleHangUp(close));
     return ExtendButton(
       imgUrl: "assets/images/hangup.png",
@@ -482,6 +497,8 @@ class CallsFunctionWidget {
   }
 
   static Widget _buildVirtualBackgroundSmallButton() {
+    final builder = CallState.instance.builders.virtualBackgroundSmallButtonBuilder;
+    if (builder != null) return builder(_handleOpenBlurBackground);
     return ExtendButton(
       imgUrl: "assets/images/blur_background_accept.png",
       tips: '',
@@ -495,7 +512,7 @@ class CallsFunctionWidget {
   }
 
   static Widget _buildVirtualBackgroundButton() {
-    final builder = CallState.instance.ex.videoCallerWaitingVirtualBackgroundButtonBuilder;
+    final builder = CallState.instance.builders.virtualBackgroundButtonBuilder;
     if (builder != null) return builder(_handleOpenBlurBackground);
     return ExtendButton(
       imgUrl: CallState.instance.enableBlurBackground
@@ -511,7 +528,7 @@ class CallsFunctionWidget {
   }
 
   static Widget _buildSwitchCameraButton() {
-    final builder = CallState.instance.ex.vidoeCallerWaitingSwitchCameraButtonBuilder;
+    final builder = CallState.instance.builders.switchCameraButtonBuilder;
     if (builder != null) return builder(_handleSwitchCamera);
     return ExtendButton(
       imgUrl: "assets/images/switch_camera_group.png",
