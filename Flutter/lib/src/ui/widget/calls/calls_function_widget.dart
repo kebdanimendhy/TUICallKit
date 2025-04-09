@@ -251,7 +251,7 @@ class CallsFunctionWidget {
     if (builder != null) {
       return builder(
         handleSwitchCamera: _handleSwitchCamera,
-        handleHangup: _handleHangUp(close),
+        handleHangup: () => _handleHangUp(close),
         handleOpenCloseCamera: _handleOpenCloseCamera,
         handleOpenBlurBackground: _handleOpenBlurBackground,
       );

@@ -1,5 +1,6 @@
 import 'package:tencent_calls_uikit/src/call_define.dart';
 import 'package:tencent_calls_uikit/src/impl/call_manager.dart';
+import 'package:tencent_calls_uikit/src/impl/call_state_custom.dart';
 import 'package:tencent_calls_uikit/src/ui/call_common_builder.dart';
 import 'package:tencent_calls_uikit/src/ui/call_navigator_observer.dart';
 import 'package:tencent_calls_uikit/src/data/user.dart';
@@ -115,6 +116,9 @@ class TUICallKit {
   }
 
   void setCommonBuilders(CallCommonBuilders builders) => CallState.instance.builders = builders;
+  void setCallStateCustom(CallStateCustom stateCustom) => CallState.instance.stateCustom = stateCustom;
   User get selfUser => CallState.instance.selfUser;
   User get caller => CallState.instance.caller;
+  TUICallScene get scene => CallState.instance.scene;
+  CallStateCustom? get stateCustom => CallState.instance.stateCustom;
 }
