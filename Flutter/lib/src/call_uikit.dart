@@ -118,4 +118,5 @@ class TUICallKit {
   void setCommonBuilders(CallCommonBuilders builders) => CallState.instance.builders = builders;
   void setCallStateCustom(CallStateCustom stateCustom) => CallState.instance.stateCustom = stateCustom;
   CallState get state => CallState.instance;
+  CallManager get manager => CallManager.instance;
 }
